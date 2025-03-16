@@ -106,4 +106,4 @@ def DownMods(s=1):
     os.rename(md,"mods")
     #показать конец
     print("нажмите enter чтобы закрыть программу щегла")
-    EX = input()
+    #EX = input()
