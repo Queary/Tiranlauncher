@@ -7,17 +7,33 @@ import sys
 import shutil
 from urllib.parse import urlencode
 import patoolib
+import json
 
+#START MAIN
 import Interface
+
+#переделать MOGL на аргумент ссылки
+#0.3 save nick + upd programs
+#0.3.1 убрать пустой ввод сделать предупреждение + убрать nick с setting.json
+#0.3.2
+#0.3.3 убрать load.json если выбор no(а то остается)
+#0.3.5 убрать папку LOAD - это баг или фича ?
+#может перед удалением f.close()  использовать
+#0.4 переделать MOGL на аргумент ссылки + ещё что не будь чтобы бы видно работу + отображать версию
+#0.5 при недостоющих файлов png(скачать)или без них,setting.json(создать) чтобы приложение могло запускаться при любых случаях
+
 
 #проверить с установкой и сразу запуском лаунчера"
 #сделать полную проверку модов перед скачиванием
 #Setup(rar) который будет устанавливать main...
 #после открытые майна скрывать или закрытвать прогу
+#отображение версии
 
+#берём setting
+setting = json.load(open("setting.json","r"))
 
 status = 0
-nick   = ""
+nick   = setting["nick"]
 mll    = minecraft_launcher_lib
 mine_path = ""
 gmc    = minecraft_launcher_lib.command.get_minecraft_command
@@ -39,6 +55,9 @@ def start(nick):
     options ={
         'username':nick,
     }
+    data = {"nick":nick}
+    with open('nick.json', 'w') as file:
+        json.dump(data, file, indent=3)
     status = 1
     print("запуск программы")
     print('░█████╗░░░█████╗░██╗░░░░░░█████╗░██╗░░░██╗███╗░░██╗░█████╗░██╗░░██╗███████╗██████╗░░')

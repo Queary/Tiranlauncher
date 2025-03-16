@@ -32,7 +32,7 @@ def DownMods(s=1):
     if s == 1:
         public_key = 'https://disk.yandex.ru/d/9c8-tFh7olg70A'
     elif s==2:
-        public_key = 'https://disk.yandex.ru/d/BOl7Xtvxa6ygmQ'
+        public_key = 'https://disk.yandex.ru/d/moBWIvZsbSnXdg'
     elif s==3:
         public_key = 'https://disk.yandex.ru/d/xs7gTME_ilOvrg'
     print("connect")
