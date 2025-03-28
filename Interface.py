@@ -16,8 +16,12 @@ import os
 #выход -> ХУЙ
 
 def sxc():
-    import main
-    main.start(ent.get())
+    
+    if ent.get() != "":
+        import main
+        main.start(ent.get())
+    else:
+        messagebox.showinfo("Оповещение", "nick пустой")
     #return ent.get()
 
 #загрузка JSON
@@ -69,6 +73,10 @@ if setting["version"] != load["version"]:
         messagebox.showinfo("Оповещение", "Перезапустите программу!")
 else:
     print("N")
+    try:
+        os.remove("load.json")
+    except:
+        print("delete load.json:error")
     YN = False
 
 root = Tk()
@@ -76,14 +84,20 @@ root.title("Щегол Лаунчер5")
 root.geometry("640x480")
 root.resizable(False, False)
 #root.bg="white"
-icon = PhotoImage(file = "shegol.png")#ico
+try:    
+    icon = PhotoImage(file = "shegol.png")#ico
+except:
+    print("shehol:error")
 #.grid(column=0, row=0)
 Label(root, text="Server OGENH").pack()
 Label(root, text="Ваш казуальный ник").pack()
 if setting["VG"] == 1:
-    img = PhotoImage(file='Pen2.png')
-    Label(root, text="", image=img, height=150, width=100).place(x=530 - 15, y=300)
-    Label(root, text="design:cxJealousy").place(x=530 - 15, y=450)
+    try:
+        img = PhotoImage(file='Pen2.png')
+        Label(root, text="", image=img, height=150, width=100).place(x=530 - 15, y=300)
+        Label(root, text="design:cxJealousy").place(x=530 - 15, y=450)
+    except:
+        print("pen2:error")
 ent = ttk.Entry()
 #забираем ник
 try:
@@ -94,8 +108,10 @@ except:
     ent.pack()
 Button(text="Запуск чертолета)", command=sxc).pack()
 Label(root, text="developer:Kingdom_Tiran").place(x=15, y=450)
-
-root.iconphoto(False, icon)
+try:
+    root.iconphoto(False, icon)
+except:
+    print("icon_add:error")
 Label(root, text="полная установка займет минут 5-30 все зависит от вашего интернета)").pack()
 Label(root, text="первый запуск долгкий последующие быстрей)").pack()
 root.mainloop()
